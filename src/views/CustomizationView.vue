@@ -1,0 +1,5 @@
+<template>
+
+    <h1>Customizations</h1>
+
+</template>
