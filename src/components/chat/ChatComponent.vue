@@ -313,8 +313,14 @@ export default {
                 if (data["online_users"]) {
                     this.$bag.commit('set_online_users', data["online_users"]);
                     for (let i = 0; i < data["online_users"].length; i++) {
-                        if (data["online_users"][i] == this.chat.user_name) {
+                        if (data["online_users"][i]["username"] == this.chat.user_name) {
                             this.chat.status = 'online';
+                            this.information.browser = data["online_users"][i]["ua"]["browser"];
+                            this.information.operating_system = data["online_users"][i]["ua"]["operating_system"];
+                            this.information.ip_address = data["online_users"][i]["ip"];
+                            this.information.country = data["online_users"][i]["ua"]["country"];
+                            this.information.url = data["online_users"][i]["url"];
+                            this.$emit('change_url', this.information);
                             break;
                         } else {
                             this.chat.status = 'offline';
@@ -333,11 +339,6 @@ export default {
                     } else {
                         if (data["user"] === this.chat.user_name) {
                             this.information.url = data["url"];
-                            let user_agent = JSON.parse(data["ua"]);
-                            this.information.browser = user_agent["browser"];
-                            this.information.operating_system = user_agent["operating_system"];
-                            this.information.ip_address = user_agent["ip_address"];
-                            this.information.country = user_agent["country"];
                             this.$emit('change_url', this.information);
                         }
                     }

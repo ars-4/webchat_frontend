@@ -12,6 +12,9 @@
       <div class="right-side-drawer" v-if="active_chat_user.user !== 'Menace'">
         <h1>Right</h1>
         <div class="component">
+          <personalInfo :user="active_chat_user" />
+        </div>
+        <div class="component">
           <notesComponent :room_name=active_room_name ref="notesComponent" />
         </div>
         <div class="component">
@@ -48,6 +51,7 @@ import ChatsBar from '@/components/bars/ChatsBar.vue'
 import ChatComponent from '@/components/chat/ChatComponent.vue'
 import infoComponent from '@/components/chat/InfoComponent.vue'
 import notesComponent from '@/components/chat/NotesComponent.vue'
+import personalInfo from '@/components/chat/PersonalInfo.vue'
 
 export default {
 
@@ -66,7 +70,8 @@ export default {
     ChatsBar,
     ChatComponent,
     infoComponent,
-    notesComponent
+    notesComponent,
+    personalInfo
   },
 
   methods: {
