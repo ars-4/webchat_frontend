@@ -10,7 +10,7 @@ const app = createApp(App)
 app.use(router)
 app.use(bag)
 app.config.globalProperties.$bag = bag
-app.config.globalProperties.$baseUri = 'http://localhost:8000'
+app.config.globalProperties.$baseUri = 'https://webchat-rjipjk1q.b4a.run'
 
 app.config.globalProperties.$notify = (message: string) => {
     if (Notification.permission === "granted") {
