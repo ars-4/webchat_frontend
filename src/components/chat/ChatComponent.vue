@@ -307,7 +307,11 @@ export default {
             this.messages = [];
             await this.get_previous_messages();
             let websocket_host = this.$baseUri.split("//")[1];
-            this.connection = new WebSocket(`wss://${websocket_host}/ws/chats/${this.room_name}/?token=${localStorage.getItem('token')}`);
+            if(this.$baseUri.includes("127.0.0.1")) {
+                this.connection = new WebSocket(`ws://${websocket_host}/ws/chats/${this.room_name}/?token=${localStorage.getItem('token')}`);                
+            } else {
+                this.connection = new WebSocket(`wss://${websocket_host}/ws/chats/${this.room_name}/?token=${localStorage.getItem('token')}`);
+            }
             this.connection.onmessage = (e) => {
                 let data = JSON.parse(e.data);
                 if (data["online_users"]) {
